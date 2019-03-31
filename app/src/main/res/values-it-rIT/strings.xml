@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_city">Città:</string>
+    <string name="text_sky">Cielo:</string>
+    <string name="city">Città</string>
+    <string name="text_temp">Temperatura:</string>
+    <string name="search">CERCA</string>
+    <string name="text_coords">Coordinate:</string>
+    <string name="text_temp_max">Temp. max</string>
+    <string name="text_temp_min">Temp. min</string>
+    <string name="text_pressure">Pressione</string>
+    <string name="text_humidity">Umidità</string>
+</resources>

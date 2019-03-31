@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
+    <string name="app_name" translatable="false">WeatherApp</string>
+    <string name="text_city">City:</string>
+    <string name="text_sky">Sky:</string>
+    <string name="city">City</string>
+    <string name="text_coords">Coords:</string>
+    <string name="text_temp">Temp:</string>
+    <string name="search">SEARCH</string>
+    <string name="title" translatable="false">WeatherApp</string>
+    <string name="text_temp_max">Max temp.</string>
+    <string name="text_temp_min">Min temp.</string>
+    <string name="text_pressure">Pressure</string>
+    <string name="text_humidity">Umidity</string>
 </resources>
