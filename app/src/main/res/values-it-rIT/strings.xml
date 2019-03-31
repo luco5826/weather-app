@@ -6,4 +6,8 @@
     <string name="text_temp">Temperatura:</string>
     <string name="search">CERCA</string>
     <string name="text_coords">Coordinate:</string>
+    <string name="text_temp_max">Temp. max</string>
+    <string name="text_temp_min">Temp. min</string>
+    <string name="text_pressure">Pressione</string>
+    <string name="text_humidity">Umidità</string>
 </resources>

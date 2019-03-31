@@ -7,4 +7,8 @@
     <string name="text_temp">Temp:</string>
     <string name="search">SEARCH</string>
     <string name="title" translatable="false">WeatherApp</string>
+    <string name="text_temp_max">Max temp.</string>
+    <string name="text_temp_min">Min temp.</string>
+    <string name="text_pressure">Pressure</string>
+    <string name="text_humidity">Umidity</string>
 </resources>
