@@ -1,5 +1,6 @@
 package com.insegno.luca.weatherapp;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,9 +34,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchCity(View view){
-        String city = ((EditText)findViewById(R.id.cityInput)).getText().toString();
+        String city = "";
         try {
-            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=bac270db3285a9dd02441776a6d08870");
+            city = ((EditText) findViewById(R.id.cityInput)).getText().toString();
+            if (city.isEmpty()) {
+                throw new IllegalArgumentException("nessuna città");
+            } else{
+                String iniziale = city.substring(0, 1);
+                String finale = city.substring(1);
+                city = iniziale.toUpperCase() + finale;
+            }
+        }catch(IllegalArgumentException e){
+                Toast.makeText(MainActivity.this, R.string.city_error, Toast.LENGTH_SHORT).show();
+            }
+
+        try {
+            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=");//serve la key per la API
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             BufferedReader buff = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -59,17 +74,23 @@ public class MainActivity extends AppCompatActivity {
             //formattatore per la temperatura
             NumberFormat formatter = NumberFormat.getInstance();
 
-            //aggiornamento della vista
-            ((TextView)findViewById(R.id.city)).setText(city);
-            ((TextView)findViewById(R.id.sky)).setText(sky);
-            ((TextView)findViewById(R.id.coords)).setText(latitudine + ", " + longitudine);
-            ((TextView)findViewById(R.id.temp)).setText(String.valueOf(formatter.format(tempC) + " °C"));
-            ((TextView)findViewById(R.id.pressure)).setText(pressione + " mbar");
-            ((TextView)findViewById(R.id.humidity)).setText(umidità + "%");
-            ((TextView)findViewById(R.id.tempMin)).setText(String.valueOf(formatter.format(tempMinC) + " °C"));
-            ((TextView)findViewById(R.id.tempMax)).setText(String.valueOf(formatter.format(tempMaxC) + " °C"));
+            Intent data = new Intent(MainActivity.this, DataActivity.class);
 
+            data.putExtra("city", city);
+            data.putExtra("sky", sky);
+            data.putExtra("coords", (latitudine + ", " + longitudine));
+            data.putExtra("temp", formatter.format(tempC) + " °C");
+            data.putExtra("pressure", formatter.format(pressione)+" hPa");
+            data.putExtra("humidity", formatter.format(umidità) + "%");
+            data.putExtra("tempMinC", formatter.format(tempMinC) + " °C");
+            data.putExtra("tempMaxC", formatter.format(tempMaxC) + " °C");
+
+            startActivity(data);
             ((EditText)findViewById(R.id.cityInput)).setText("");
+
+
+
+
 
 
         } catch (IOException | JSONException e) {
