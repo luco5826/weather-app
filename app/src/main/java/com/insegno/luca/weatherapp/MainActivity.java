@@ -88,11 +88,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(data);
             ((EditText)findViewById(R.id.cityInput)).setText("");
 
-
-
-
-
-
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
